@@ -7,6 +7,7 @@ use App\Http\Requests\StoreAppointment;
 use App\Http\Requests\UpdateAppointment;
 use App\Mail\AppointmentMail;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -48,7 +49,11 @@ class AppointmentController extends Controller
 
         $inputs = $request->except('_token');
 
-        Mail::to($email)->send(new AppointmentMail($inputs));
+        try {
+            Mail::to($email)->send(new AppointmentMail($inputs));
+        } catch (\Exception $e) {
+            Log::error('Unable to send email on appointment create.');
+        }
 
         DB::transaction(function () use ($request)
         {
