@@ -47,8 +47,11 @@ class AppointmentController extends Controller
         });
 
         $inputs = $request->except('_token');
-
-        Mail::to($email)->send(new AppointmentMail($inputs));
+        try {
+            Mail::to($email)->send(new AppointmentMail($inputs));
+        } catch (\Exception $e) {
+            // Failed to send mail
+        }
 
         DB::transaction(function () use ($request)
         {
