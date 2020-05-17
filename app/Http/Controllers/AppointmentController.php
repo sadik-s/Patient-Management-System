@@ -41,14 +41,24 @@ class AppointmentController extends Controller
      */
     public function store(StoreAppointment $request)
     {
-        $email = Doctor::pluck('email', 'id')->map(function ($item)
-        {
-            return ucwords($item);
-        });
+        $doctor = Doctor::find($request->get('doctor_id'));
 
         $inputs = $request->except('_token');
         try {
-            Mail::to($email)->send(new AppointmentMail($inputs));
+            if(env('ENABLE_APPOINTMENT_MAIL_NOTIFICATION', false)) {
+                Mail::to($doctor->email)->send(new AppointmentMail($inputs));
+            }
+
+            if(env('ENABLE_SMS_NOTIFICATION', false)) {
+                onnorokom_sms([
+                    'message' => __('sms.appointment-place', [
+                        'name' => $inputs['name'],
+                        'doctor' => $doctor->name,
+                        'date' => $inputs['date'].' '.$inputs['time']
+                    ]),
+                    'mobile_number' => $inputs['phone']
+                ]);
+            }
         } catch (\Exception $e) {
             // Failed to send mail
         }
