@@ -37,7 +37,7 @@ Route::group(['prefix' => 'patient', 'as' => 'patient.'], function ()
     Route::get('{patient}', 'PatientController@show')->name('show');
     Route::get('{patient}/edit', 'PatientController@edit')->name('edit');
     Route::put('{patient}', 'PatientController@update')->name('update');
-    Route::delete('{patient}', 'PatientController@destroy')->name('de   stroy');
+    Route::delete('{patient}/destroy', 'PatientController@destroy')->name('destroy');
 });
 
 /*
@@ -54,7 +54,7 @@ Route::group(['prefix' => 'doctor', 'as' => 'doctor.'], function ()
     Route::get('{doctor}', 'DoctorController@show')->name('show');
     Route::get('{doctor}/edit', 'DoctorController@edit')->name('edit');
     Route::put('{doctor}', 'DoctorController@update')->name('update');
-    Route::delete('{doctor}', 'DoctorController@destroy')->name('destroy');
+    Route::delete('{doctor}/destroy', 'DoctorController@destroy')->name('destroy');
 });
 
 /*
@@ -71,7 +71,7 @@ Route::group(['prefix' => 'staff', 'as' => 'staff.'], function ()
     Route::get('{staff}', 'StaffController@show')->name('show');
     Route::get('{staff}/edit', 'StaffController@edit')->name('edit');
     Route::put('{staff}', 'StaffController@update')->name('update');
-    Route::delete('{staff}', 'StaffController@destroy')->name('destroy');
+    Route::delete('{staff}/destroy', 'StaffController@destroy')->name('destroy');
 });
 
 /*
@@ -88,7 +88,7 @@ Route::group(['prefix' => 'appointment', 'as' => 'appointment.'], function ()
     Route::get('{appointment}', 'AppointmentController@show')->name('show');
     Route::get('{appointment}/edit', 'AppointmentController@edit')->name('edit');
     Route::put('{appointment}', 'AppointmentController@update')->name('update');
-    Route::delete('{appointment}', 'AppointmentController@destroy')->name('destroy');
+    Route::delete('{appointment}/destroy', 'AppointmentController@destroy')->name('destroy');
 });
 
 /*
@@ -105,5 +105,5 @@ Route::group(['prefix' => 'inpatient', 'as' => 'inpatient.'], function ()
     Route::get('{inpatient}', 'InpatientController@show')->name('show');
     Route::get('{inpatient}/edit', 'InpatientController@edit')->name('edit');
     Route::put('{inpatient}', 'InpatientController@update')->name('update');
-    Route::delete('{inpatient}', 'InpatientController@destroy')->name('destroy');
+    Route::delete('{inpatient}/destroy', 'InpatientController@destroy')->name('destroy');
 });
