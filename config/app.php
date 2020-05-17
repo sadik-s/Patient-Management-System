@@ -182,7 +182,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         App\Providers\ComposerServiceProvider::class,
-
+        Hizbul\OnnorokomSms\OnnorokomSmsServiceProvider::class,
     ],
 
     /*
@@ -235,5 +235,6 @@ return [
         'Image' => Intervention\Image\Facades\Image::class,
         'Html' => Collective\Html\HtmlFacade::class,
         'DataTables' => Yajra\DataTables\Facades\DataTables::class,
+        'OnnoRokomSMS' => Hizbul\OnnorokomSms\Facades\OnnoRokomSMS::class,
     ],
 ];
